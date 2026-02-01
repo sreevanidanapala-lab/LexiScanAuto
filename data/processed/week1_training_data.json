@@ -1,0 +1,66 @@
+[
+    [
+        "This Agreement is entered into on January 15, 2022 between Alpha Corp and Beta Solutions.\nThe total contract value is $250,000 payable within 30 days.\nThis agreement may be terminated on December 31, 2025 by either party.",
+        {
+            "entities": [
+                [
+                    34,
+                    50,
+                    "DATE"
+                ],
+                [
+                    187,
+                    204,
+                    "DATE"
+                ],
+                [
+                    59,
+                    69,
+                    "PARTY"
+                ],
+                [
+                    74,
+                    88,
+                    "PARTY"
+                ],
+                [
+                    118,
+                    126,
+                    "MONEY"
+                ],
+                [
+                    173,
+                    183,
+                    "TERMINATION"
+                ]
+            ]
+        }
+    ],
+    [
+        "This Contract is made on March 10, 2021 between Global Finance Ltd and Orion Tech.\nThe amount agreed is $1,500,000.\nTermination shall occur if either party breaches the agreement.",
+        {
+            "entities": [
+                [
+                    25,
+                    39,
+                    "DATE"
+                ],
+                [
+                    48,
+                    66,
+                    "PARTY"
+                ],
+                [
+                    71,
+                    81,
+                    "PARTY"
+                ],
+                [
+                    104,
+                    114,
+                    "MONEY"
+                ]
+            ]
+        }
+    ]
+]
