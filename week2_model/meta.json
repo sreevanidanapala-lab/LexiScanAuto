@@ -18,10 +18,7 @@
   },
   "labels":{
     "ner":[
-      "DATE",
-      "MONEY",
-      "PARTY",
-      "TERMINATION"
+
     ]
   },
   "pipeline":[
