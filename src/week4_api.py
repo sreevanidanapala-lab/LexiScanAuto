@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import spacy
 from pathlib import Path
-from validator import validate_entities  # make sure file name is 3_validator.py
+from validator import validate_entities  # make sure file name is validator.py
 
 # Load model
 CURRENT_DIR = Path(__file__).resolve().parent

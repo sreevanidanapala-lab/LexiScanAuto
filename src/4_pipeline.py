@@ -8,7 +8,7 @@ import importlib.util
 # ----------------------------
 CURRENT_DIR = Path(__file__).resolve().parent
 
-validator_path = CURRENT_DIR / "3_validator.py"
+validator_path = CURRENT_DIR / "validator.py"
 
 spec = importlib.util.spec_from_file_location("validator", validator_path)
 validator_module = importlib.util.module_from_spec(spec)
