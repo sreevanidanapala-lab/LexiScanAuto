@@ -2,25 +2,37 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import spacy
 from pathlib import Path
-from validator import validate_entities  # make sure file name is validator.py
+from src.validator import validate_entities
 
-# Load model
+# ---------------------------
+# Load Trained Model
+# ---------------------------
 CURRENT_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = CURRENT_DIR.parent
 MODEL_PATH = PROJECT_ROOT / "week2_model"
 
 nlp = spacy.load(MODEL_PATH)
 
-app = FastAPI()
+app = FastAPI(title="LexiScan Auto API")
 
-# Request body model
+# ---------------------------
+# Request Model
+# ---------------------------
 class ContractRequest(BaseModel):
     text: str
 
+
+# ---------------------------
+# Home Route
+# ---------------------------
 @app.get("/")
 def home():
     return {"message": "LexiScan Auto API Running Successfully"}
 
+
+# ---------------------------
+# Entity Extraction Route
+# ---------------------------
 @app.post("/extract")
 def extract_entities(request: ContractRequest):
 
@@ -43,7 +55,6 @@ def extract_entities(request: ContractRequest):
         elif ent.label_ == "TERMINATION":
             raw_output["TerminationClauses"].append(ent.text)
 
-    # Apply Week 3 validation
     validated_output = validate_entities(raw_output)
 
     return validated_output

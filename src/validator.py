@@ -9,22 +9,23 @@ def validate_entities(data):
         "TerminationClauses": []
     }
 
-    # Date validation
-    date_pattern = r"^(January|February|March|April|May|June|July|August|September|October|November|December)\s\d{1,2},\s\d{4}$"
+    # Validate DATE (simple format check)
+    for date in data.get("Dates", []):
+        if re.search(r"\d{4}", date):
+            validated["Dates"].append(date)
 
-    # Money validation
-    money_pattern = r"^\$\d{1,3}(?:,\d{3})*(?:\.\d{2})?$"
+    # Validate MONEY (must contain $)
+    for amount in data.get("Amounts", []):
+        if "$" in amount:
+            validated["Amounts"].append(amount)
 
-    for d in data.get("Dates", []):
-        if re.match(date_pattern, d.strip()):
-            validated["Dates"].append(d.strip())
+    # Parties (basic check)
+    for party in data.get("Parties", []):
+        if len(party) > 2:
+            validated["Parties"].append(party)
 
-    for m in data.get("Amounts", []):
-        if re.match(money_pattern, m.strip()):
-            validated["Amounts"].append(m.strip())
-
-    # Remove duplicates
-    validated["Parties"] = list(set(data.get("Parties", [])))
-    validated["TerminationClauses"] = list(set(data.get("TerminationClauses", [])))
+    # Termination words
+    for term in data.get("TerminationClauses", []):
+        validated["TerminationClauses"].append(term)
 
     return validated
