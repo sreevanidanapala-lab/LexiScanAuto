@@ -1,37 +1,20 @@
-import spacy
-from pathlib import Path
+from ner.rule_extractor import extract_parties, extract_termination_clauses
+import re
 
-# Safe path handling
-CURRENT_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = CURRENT_DIR.parent.parent
-MODEL_PATH = PROJECT_ROOT / "week2_model"
 
-if not MODEL_PATH.exists():
-    raise FileNotFoundError(
-        f"Model not found at {MODEL_PATH}. Train model first."
-    )
+def extract_dates(text):
+    return re.findall(r'\d{4}-\d{2}-\d{2}', text)
 
-nlp = spacy.load(MODEL_PATH)
+
+def extract_amounts(text):
+    return re.findall(r'\$\s?\d+(?:,\d{3})*(?:\.\d{2})?', text)
 
 
 def extract_entities(text: str):
-    doc = nlp(text)
 
-    result = {
-        "dates": [],
-        "parties": [],
-        "amounts": [],
-        "termination_clauses": []
+    return {
+        "dates": extract_dates(text),
+        "amounts": extract_amounts(text),
+        "parties": extract_parties(text),
+        "termination_clauses": extract_termination_clauses(text)
     }
-
-    for ent in doc.ents:
-        if ent.label_ == "DATE":
-            result["dates"].append(ent.text)
-        elif ent.label_ == "PARTY":
-            result["parties"].append(ent.text)
-        elif ent.label_ == "MONEY":
-            result["amounts"].append(ent.text)
-        elif ent.label_ == "TERMINATION":
-            result["termination_clauses"].append(ent.text)
-
-    return result
