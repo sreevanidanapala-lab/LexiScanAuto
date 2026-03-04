@@ -1,0 +1,142 @@
+PROJECT REPORT
+LexiScan Auto – Legal Contract Entity Extraction System
+Case Study: Service Agreement Analysis
+1️⃣ Introduction
+
+LexiScan Auto is an AI-powered Legal Contract Intelligence System designed to automatically extract structured legal entities from unstructured agreements.
+
+This report demonstrates the system using a Service Agreement contract sample.
+
+2️⃣ Problem Statement
+
+Law firms manually review contracts to identify:
+
+Contract dates
+
+Parties involved
+
+Financial commitments
+
+Termination conditions
+
+Manual review is:
+
+Time-consuming
+
+Error-prone
+
+Difficult to scale
+
+The objective is to automate this process.
+
+3️⃣ Input Contract (Sample Used)
+Service Agreement entered on 2024-03-15 between Alpha Technologies Pvt Ltd and Beta Retail Solutions.
+
+Alpha Technologies Pvt Ltd agrees to provide IT consulting services for $300,000.
+
+This Agreement may be terminated by either party with 60 days written notice.
+
+In case of material breach, the non-breaching party may terminate immediately.
+4️⃣ System Workflow
+Raw Contract Text
+        ↓
+NER Entity Extraction
+        ↓
+Rule-Based Validation
+        ↓
+Structured JSON Output
+5️⃣ Technologies Used
+
+Python
+
+spaCy (NER Model)
+
+FastAPI (API Service)
+
+Docker (Deployment)
+
+Streamlit (Dashboard)
+
+6️⃣ Extracted Entities (System Output)
+
+After processing the above contract, the system generates:
+
+{
+  "dates": ["2024-03-15"],
+  "parties": [
+    "Alpha Technologies Pvt Ltd",
+    "Beta Retail Solutions"
+  ],
+  "amounts": ["$300,000"],
+  "termination_clauses": [
+    "This Agreement may be terminated by either party with 60 days written notice.",
+    "In case of material breach, the non-breaching party may terminate immediately."
+  ]
+}
+7️⃣ Entity Analysis
+📅 Date Identified
+
+Contract Effective Date: 2024-03-15
+
+🏢 Parties Identified
+
+Alpha Technologies Pvt Ltd
+
+Beta Retail Solutions
+
+💰 Financial Commitment
+
+Contract Value: $300,000
+
+📜 Termination Clauses Identified
+
+Termination with 60 days notice
+
+Immediate termination in case of material breach
+
+8️⃣ Business Value
+
+This structured output enables:
+
+Fast contract indexing
+
+Smart legal search
+
+Risk identification
+
+Automated compliance checks
+
+Time saved per contract: Significant reduction compared to manual review.
+
+9️⃣ Validation Layer
+
+The system ensures:
+
+Dates follow YYYY-MM-DD format
+
+Amount includes currency symbol
+
+Parties follow organization naming pattern
+
+Termination clauses contain legal keywords
+
+This increases reliability in legal environments.
+
+🔟 Deployment
+
+The system is deployed as:
+
+REST API service
+
+Dockerized container
+
+Dashboard-based interface
+
+Accessible via:
+
+POST /extract
+1️⃣1️⃣ Conclusion
+
+LexiScan Auto successfully extracts critical legal entities from a Service Agreement.
+
+The system transforms unstructured legal documents into structured, machine-readable data, enabling scalable contract intelligence for law firms.

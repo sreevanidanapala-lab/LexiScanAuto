@@ -6,3 +6,5 @@ pytesseract
 pdf2image
 streamlit
 requests
+
+uvicorn src.api.app:app --reload  ....execute api
